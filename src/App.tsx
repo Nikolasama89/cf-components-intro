@@ -7,9 +7,12 @@
 // import CodingFactoryLogo from "./components/CodingFactoryLogo.tsx";
 
 import Layout from "./components/Layout.tsx";
+import CounterAdvanced from "./components/CounterAdvanced.tsx";
+// import NameChanger from "./components/NameChanger.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 // import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
-import Counter from "./components/Counter.tsx";
+// import Counter from "./components/Counter.tsx";
+// import CounterWithMoreStates from "./components/CounterWithMoreStates.tsx";
 
 function App() {
 
@@ -30,7 +33,10 @@ function App() {
         {/*<ClassComponentWithState />*/}
         {/*<ClassComponentWithState />*/}
         {/*<FunctionalComponentWithState/>*/}
-        <Counter/>
+        {/*<Counter/>*/}
+        {/*<NameChanger/>*/}
+        {/*<CounterWithMoreStates/>*/}
+        <CounterAdvanced/>
       </Layout>
     </>
   )
