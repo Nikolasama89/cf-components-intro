@@ -7,10 +7,11 @@
 // import CodingFactoryLogo from "./components/CodingFactoryLogo.tsx";
 
 import Layout from "./components/Layout.tsx";
+import Todo from "./components/Todo/Todo.tsx";
 // import CounterAdvanced from "./components/CounterAdvanced.tsx";
 // import CounterWithCustomHook from "./components/CounterWithCustomHook.tsx";
 // import CounterAdvancedWithCustomHook from "./components/CounterAdvancedWithCustomHook.tsx";
-import CounterWithReducer from "./components/CounterWithReducer.tsx";
+// import CounterWithReducer from "./components/CounterWithReducer.tsx";
 // import NameChanger from "./components/NameChanger.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 // import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
@@ -42,7 +43,8 @@ function App() {
         {/*<CounterAdvanced/>*/}
         {/*<CounterWithCustomHook/>*/}
         {/*<CounterAdvancedWithCustomHook/>*/}
-        <CounterWithReducer/>
+        {/*<CounterWithReducer/>*/}
+        <Todo/>
 
       </Layout>
     </>
