@@ -23,6 +23,8 @@ import UserPage from "./pages/UserPage.tsx";
 import RouterLayout from "./components/RouterLayout.tsx";
 import ExamplesPage from "./pages/ExamplesPage.tsx";
 import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
+import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 // import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
 // import Counter from "./components/Counter.tsx";
@@ -77,10 +79,13 @@ function App() {
               <Route index element={<ExamplesPage />}></Route>
               <Route path="name-changer" element={<NameChangerPage/>}></Route>
               <Route path="online-status" element={<OnlineStatusPage/>}></Route>
+              <Route path="auto-redirect" element={<AutoRedirectPage />}></Route>
             </Route>
             <Route path="users/:userId" element={<UserPage />}></Route>
             <Route path="users" element={<UserPage />}></Route>
             {/*<Route path="files/*" element={<FilePage />}></Route>*/}
+            {/*ΠΑΝΤΑ ΜΠΑΙΝΕΙ ΣΤΟ ΤΕΛΟΣ ΤΗΣ ΣΕΛΙΔΑΣ*/}
+            <Route path="*" element={<NotFoundPage />}></Route>
 
           </Routes>
         {/*</Layout>*/}
