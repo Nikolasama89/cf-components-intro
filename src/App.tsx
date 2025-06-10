@@ -21,6 +21,8 @@ import NameChangerPage from "./pages/NameChangerPage.tsx";
 import OnlineStatusPage from "./pages/OnlineStatusPage.tsx";
 import UserPage from "./pages/UserPage.tsx";
 import RouterLayout from "./components/RouterLayout.tsx";
+import ExamplesPage from "./pages/ExamplesPage.tsx";
+import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 // import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
 // import Counter from "./components/Counter.tsx";
@@ -70,7 +72,9 @@ function App() {
 
             {/*ΕΤΣΙ ΒΑΖΟΥΜΕ ΣΕ ΕΝΑ PATH ΑΡΚΕΤΕΣ ΣΕΛΙΔΕΣ*/}
             {/*Optional with ?*/}
-            <Route path="examples?">
+            {/*<Route path="examples?">*/}
+            <Route path="examples" element={<RouterExamplesLayout />}>
+              <Route index element={<ExamplesPage />}></Route>
               <Route path="name-changer" element={<NameChangerPage/>}></Route>
               <Route path="online-status" element={<OnlineStatusPage/>}></Route>
             </Route>
