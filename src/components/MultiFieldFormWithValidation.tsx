@@ -79,9 +79,24 @@ const MultiFieldFormWithValidation = () => {
     <>
       <div className="flex text-center max-w-sm mx-auto mt-8">
         <form onSubmit={handleSubmit} className="space-y-4">
-          <input value={values.name} type="text" name="name" placeholder="Name" className="w-full px-4 py-2 border rounded" onChange={handleChange} required/>
-          <input value={values.email} type="text" name="email" placeholder="Email" className="w-full px-4 py-2 border rounded" onChange={handleChange} required/>
-          <textarea minLength={5} value={values.message} name="message" placeholder="Type your message" className="w-full px-4 py-2 border rounded" onChange={handleChange} required></textarea>
+          <div>
+            <input value={values.name} type="text" name="name" placeholder="Name" className="w-full px-4 py-2 border rounded" onChange={handleChange} />
+            {errors?.name &&(
+              <p className="bg-red-900">{errors.name}</p>
+            )}
+          </div>
+          <div>
+            <input value={values.email} type="text" name="email" placeholder="Email" className="w-full px-4 py-2 border rounded" onChange={handleChange} />
+            {errors?.email &&(
+              <p className="bg-red-900">{errors.email}</p>
+            )}
+          </div>
+          <div>
+            <textarea minLength={5} value={values.message} name="message" placeholder="Type your message" className="w-full px-4 py-2 border rounded" onChange={handleChange}></textarea>
+            {errors?.message && (
+              <p className="bg-red-900">{errors.message}</p>
+            )}
+          </div>
           <div className="flex gap-4">
             <button type="submit" className="bg-red-800 text-white px-4 py-2 rounded">
               Submit

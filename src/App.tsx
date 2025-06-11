@@ -27,7 +27,8 @@ import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
 // import FocusInput from "./components/FocusInput.tsx";
 // import UnControlledInput from "./components/UnControlledInput.tsx";
-import MultiFieldForm from "./components/MultiFieldForm.tsx";
+// import MultiFieldForm from "./components/MultiFieldForm.tsx";
+import MultiFieldFormWithValidation from "./components/MultiFieldFormWithValidation.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 // import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
 // import Counter from "./components/Counter.tsx";
@@ -73,7 +74,8 @@ function App() {
             <Route element={<RouterLayout />}>
               {/*<Route index element={<HomePage />}></Route>*/}
               {/*<Route index element={<FocusInput />}></Route>*/}
-              <Route index element={<MultiFieldForm />}></Route>
+              {/*<Route index element={<MultiFieldForm />}></Route>*/}
+              <Route index element={<MultiFieldFormWithValidation />}></Route>
               {/*<Route index element={<UnControlledInput />}></Route>*/}
               {/*<Route index element={<MultiFieldForm />}></Route>*/}
             </Route>
