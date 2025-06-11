@@ -15,18 +15,19 @@
 // import NameChanger from "./components/NameChanger.tsx";
 // import OnlineStatus from "./components/OnlineStatus.tsx";
 import {BrowserRouter, Route, Routes} from "react-router";
-import HomePage from "./pages/HomePage.tsx";
+// import HomePage from "./pages/HomePage.tsx";
 import NameChangerPage from "./pages/NameChangerPage.tsx";
 // import Layout from "./components/Layout.tsx";
 import OnlineStatusPage from "./pages/OnlineStatusPage.tsx";
 import UserPage from "./pages/UserPage.tsx";
 import RouterLayout from "./components/RouterLayout.tsx";
-import ExamplesPage from "./pages/ExamplesPage.tsx";
+// import ExamplesPage from "./pages/ExamplesPage.tsx";
 import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
 import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
-import FocusInput from "./components/FocusInput.tsx";
-import UnControlledInput from "./components/UnControlledInput.tsx";
+// import FocusInput from "./components/FocusInput.tsx";
+// import UnControlledInput from "./components/UnControlledInput.tsx";
+import MultiFieldForm from "./components/MultiFieldForm.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 // import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
 // import Counter from "./components/Counter.tsx";
@@ -72,7 +73,9 @@ function App() {
             <Route element={<RouterLayout />}>
               {/*<Route index element={<HomePage />}></Route>*/}
               {/*<Route index element={<FocusInput />}></Route>*/}
-              <Route index element={<UnControlledInput />}></Route>
+              <Route index element={<MultiFieldForm />}></Route>
+              {/*<Route index element={<UnControlledInput />}></Route>*/}
+              {/*<Route index element={<MultiFieldForm />}></Route>*/}
             </Route>
             <Route path="name-changer" element={<NameChangerPage />}></Route>
 
@@ -80,7 +83,7 @@ function App() {
             {/*Optional with ?*/}
             {/*<Route path="examples?">*/}
             <Route path="examples" element={<RouterExamplesLayout />}>
-              <Route index element={<ExamplesPage />}></Route>
+              {/*<Route index element={<ExamplesPage />}></Route>*/}
               <Route path="name-changer" element={<NameChangerPage/>}></Route>
               <Route path="online-status" element={<OnlineStatusPage/>}></Route>
               <Route path="auto-redirect" element={<AutoRedirectPage />}></Route>
