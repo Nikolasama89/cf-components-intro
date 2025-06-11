@@ -45,7 +45,7 @@ const MultiFieldForm = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <input value={values.name} type="text" name="name" placeholder="Name" className="w-full px-4 py-2 border rounded" onChange={handleChange} required/>
           <input value={values.email} type="text" name="email" placeholder="Email" className="w-full px-4 py-2 border rounded" onChange={handleChange} required/>
-          <textarea value={values.message} name="message" placeholder="Type your message" className="w-full px-4 py-2 border rounded" onChange={handleChange} required></textarea>
+          <textarea minLength={5} value={values.message} name="message" placeholder="Type your message" className="w-full px-4 py-2 border rounded" onChange={handleChange} required></textarea>
           <div className="flex gap-4">
             <button type="submit" className="bg-red-800 text-white px-4 py-2 rounded">
               Submit
