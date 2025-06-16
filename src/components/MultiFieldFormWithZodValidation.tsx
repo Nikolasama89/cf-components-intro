@@ -27,18 +27,23 @@ const MultiFieldFormWithZodValidation = () => {
   const [submittedData, setSubmittedData] = useState<FormValues | null>(null);
   const [errors, setErrors] = useState<FormErrors | null>(null);
 
-  const validateForm = (values: FormValues): FormErrors => {
-    const errors: FormErrors = {};
-    if (!values.name.trim()) {
-      errors.name = "Name is required";
+  const validateForm = () => {
+    const result = formSchema.safeParse(values);
+    // ΑΝ ΕΙΝΑΙ TRUE ΘΑ ΕΧΟΥΜΕ ΤΑ DATA ΑΛΛΙΩΣ ΘΑ ΕΧΟΥΜΕ ΤΑ ERRORS
+    //{success: true, data: validatedData}
+    //{success: false, errors: errors};
+    if (!result.success) {
+      const newErrors: FormErrors = {}
+
+      result.error.issues.forEach((issue) => {
+        const fieldName = issue.path[0] as keyof FormErrors;
+        newErrors[fieldName] = issue.message;
+      })
+      setErrors(newErrors);
+      return false;
     }
-    if (!values.email.trim() || !/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/.test(values.name.trim())) {
-      errors.email = "Email is required";
-    }
-    if (!values.message.trim() || values.message.length < 5) {
-      errors.message = "Message is required";
-    }
-    return errors;
+    setErrors({});
+    return true;
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -59,43 +64,38 @@ const MultiFieldFormWithZodValidation = () => {
 
   const handleClear = () => {
     setValues(initialValues);
+    setErrors({})
     setSubmittedData(null);
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const validationErrors = validateForm(values);
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      setSubmittedData(null);
-      return;
+    const isValid = validateForm();
+    if (isValid) {
+      setSubmittedData(values);
+      setValues(initialValues);
     }
-
-    setSubmittedData(values);
-    setValues(initialValues);
-    setErrors(null);
-  }
+  };
 
   return (
     <>
       <div className="flex text-center max-w-sm mx-auto mt-8">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <input value={values.name} type="text" name="name" placeholder="Name" className="w-full px-4 py-2 border rounded" onChange={handleChange} />
+            <input autoComplete="off" value={values.name} type="text" name="name" placeholder="Name" className="w-full px-4 py-2 border rounded" onChange={handleChange} />
             {errors?.name &&(
               <p className="bg-red-900">{errors.name}</p>
             )}
           </div>
           <div>
-            <input value={values.email} type="text" name="email" placeholder="Email" className="w-full px-4 py-2 border rounded" onChange={handleChange} />
+            <input autoComplete="off" value={values.email} type="text" name="email" placeholder="Email" className="w-full px-4 py-2 border rounded" onChange={handleChange} />
             {errors?.email &&(
               <p className="bg-red-900">{errors.email}</p>
             )}
           </div>
           <div>
-            <textarea minLength={5} value={values.message} name="message" placeholder="Type your message" className="w-full px-4 py-2 border rounded" onChange={handleChange}></textarea>
+            <textarea autoComplete="off" minLength={5} value={values.message} name="message" placeholder="Type your message" className="w-full px-4 py-2 border rounded" onChange={handleChange}></textarea>
             {errors?.message && (
               <p className="bg-red-900">{errors.message}</p>
             )}
