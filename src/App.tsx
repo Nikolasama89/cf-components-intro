@@ -16,21 +16,22 @@
 // import OnlineStatus from "./components/OnlineStatus.tsx";
 import {BrowserRouter, Route, Routes} from "react-router";
 // import HomePage from "./pages/HomePage.tsx";
-import NameChangerPage from "./pages/NameChangerPage.tsx";
+// import NameChangerPage from "./pages/NameChangerPage.tsx";
 // import Layout from "./components/Layout.tsx";
-import OnlineStatusPage from "./pages/OnlineStatusPage.tsx";
-import UserPage from "./pages/UserPage.tsx";
+// import OnlineStatusPage from "./pages/OnlineStatusPage.tsx";
+// import UserPage from "./pages/UserPage.tsx";
 import RouterLayout from "./components/RouterLayout.tsx";
+import ProductsList from "@/components/ProductsList.tsx";
 // import ExamplesPage from "./pages/ExamplesPage.tsx";
-import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
-import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
-import NotFoundPage from "./pages/NotFoundPage.tsx";
+// import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
+// import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
+// import NotFoundPage from "./pages/NotFoundPage.tsx";
 // import FocusInput from "./components/FocusInput.tsx";
 // import UnControlledInput from "./components/UnControlledInput.tsx";
 // import MultiFieldForm from "./components/MultiFieldForm.tsx";
 // import MultiFieldFormWithValidation from "./components/MultiFieldFormWithValidation.tsx";
 // import MultiFieldFormWithZodValidation from "./components/MultiFieldFormWithZodValidation.tsx";
-import MultiFieldFormWithReactHook from "./components/MultiFieldFormWithReactHook.tsx";
+// import MultiFieldFormWithReactHook from "./components/MultiFieldFormWithReactHook.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 // import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
 // import Counter from "./components/Counter.tsx";
@@ -70,36 +71,40 @@ function App() {
       <BrowserRouter>
         {/*<Layout>*/}
           <Routes>
-            {/*ΚΑΙ ΜΕ "/" ΚΑΙ ΜΕ INDEX ΕΙΝΑΙ ΤΟ ΙΔΙΟ*/}
-            {/*<Route path="/" element={<HomePage />}></Route>*/}
-            {/*ΕΤΣΙ ΠΕΡΙΚΛΕΙΟΥΜΕ ΣΕ ΕΝΑ COMPONENT ANTI ΓΙΑ ΤΗΝ ΧΡΗΣΗ ΤΟΥ CHILDREN*/}
-            <Route element={<RouterLayout />}>
-              {/*<Route index element={<HomePage />}></Route>*/}
-              {/*<Route index element={<FocusInput />}></Route>*/}
-              {/*<Route index element={<MultiFieldForm />}></Route>*/}
-              {/*<Route index element={<MultiFieldFormWithValidation />}></Route>*/}
-              {/*<Route index element={<MultiFieldFormWithZodValidation />}></Route>*/}
-              <Route index element={<MultiFieldFormWithReactHook />}></Route>
+            {/*/!*ΚΑΙ ΜΕ "/" ΚΑΙ ΜΕ INDEX ΕΙΝΑΙ ΤΟ ΙΔΙΟ*!/*/}
+            {/*/!*<Route path="/" element={<HomePage />}></Route>*!/*/}
+            {/*/!*ΕΤΣΙ ΠΕΡΙΚΛΕΙΟΥΜΕ ΣΕ ΕΝΑ COMPONENT ANTI ΓΙΑ ΤΗΝ ΧΡΗΣΗ ΤΟΥ CHILDREN*!/*/}
+            {/*<Route element={<RouterLayout />}>*/}
+            {/*  /!*<Route index element={<HomePage />}></Route>*!/*/}
+            {/*  /!*<Route index element={<FocusInput />}></Route>*!/*/}
+            {/*  /!*<Route index element={<MultiFieldForm />}></Route>*!/*/}
+            {/*  /!*<Route index element={<MultiFieldFormWithValidation />}></Route>*!/*/}
+            {/*  /!*<Route index element={<MultiFieldFormWithZodValidation />}></Route>*!/*/}
+            {/*  <Route index element={<MultiFieldFormWithReactHook />}></Route>*/}
 
-              {/*<Route index element={<UnControlledInput />}></Route>*/}
-              {/*<Route index element={<MultiFieldForm />}></Route>*/}
-            </Route>
-            <Route path="name-changer" element={<NameChangerPage />}></Route>
+            {/*  /!*<Route index element={<UnControlledInput />}></Route>*!/*/}
+            {/*  /!*<Route index element={<MultiFieldForm />}></Route>*!/*/}
+            {/*</Route>*/}
+            {/*<Route path="name-changer" element={<NameChangerPage />}></Route>*/}
 
-            {/*ΕΤΣΙ ΒΑΖΟΥΜΕ ΣΕ ΕΝΑ PATH ΑΡΚΕΤΕΣ ΣΕΛΙΔΕΣ*/}
-            {/*Optional with ?*/}
-            {/*<Route path="examples?">*/}
-            <Route path="examples" element={<RouterExamplesLayout />}>
-              {/*<Route index element={<ExamplesPage />}></Route>*/}
-              <Route path="name-changer" element={<NameChangerPage/>}></Route>
-              <Route path="online-status" element={<OnlineStatusPage/>}></Route>
-              <Route path="auto-redirect" element={<AutoRedirectPage />}></Route>
-            </Route>
-            <Route path="users/:userId" element={<UserPage />}></Route>
-            <Route path="users" element={<UserPage />}></Route>
-            {/*<Route path="files/*" element={<FilePage />}></Route>*/}
-            {/*ΠΑΝΤΑ ΜΠΑΙΝΕΙ ΣΤΟ ΤΕΛΟΣ ΤΗΣ ΣΕΛΙΔΑΣ*/}
-            <Route path="*" element={<NotFoundPage />}></Route>
+            {/*/!*ΕΤΣΙ ΒΑΖΟΥΜΕ ΣΕ ΕΝΑ PATH ΑΡΚΕΤΕΣ ΣΕΛΙΔΕΣ*!/*/}
+            {/*/!*Optional with ?*!/*/}
+            {/*/!*<Route path="examples?">*!/*/}
+            {/*<Route path="examples" element={<RouterExamplesLayout />}>*/}
+            {/*  /!*<Route index element={<ExamplesPage />}></Route>*!/*/}
+            {/*  <Route path="name-changer" element={<NameChangerPage/>}></Route>*/}
+            {/*  <Route path="online-status" element={<OnlineStatusPage/>}></Route>*/}
+            {/*  <Route path="auto-redirect" element={<AutoRedirectPage />}></Route>*/}
+            {/*</Route>*/}
+            {/*<Route path="users/:userId" element={<UserPage />}></Route>*/}
+            {/*<Route path="users" element={<UserPage />}></Route>*/}
+            {/*/!*<Route path="files/*" element={<FilePage />}></Route>*!/*/}
+            {/*/!*ΠΑΝΤΑ ΜΠΑΙΝΕΙ ΣΤΟ ΤΕΛΟΣ ΤΗΣ ΣΕΛΙΔΑΣ*!/*/}
+            {/*<Route path="*" element={<NotFoundPage />}></Route>*/}
+            <Route path="products" element={<RouterLayout />} />
+              <Route index element={<ProductsList/>} />
+              {/*<Route path="new" element={<Product />}>*/}
+              {/*<Route path=":productId" element={<Product />} />*/}
 
           </Routes>
         {/*</Layout>*/}
