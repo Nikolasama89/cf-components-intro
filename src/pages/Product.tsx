@@ -1,19 +1,24 @@
 import {useNavigate, useParams} from "react-router";
 import {useForm} from "react-hook-form"
 import {zodResolver} from "@hookform/resolvers/zod";
-import {getProduct, ProductSchema, updateProduct, productFormSchema} from "@/api/products"
+import {getProduct, updateProduct, productFormSchema, type ProductType, createProduct} from "../api/products"
 import {Label} from "@/components/ui/label"
 import {Input} from "@/components/ui/input.tsx";
 import {Textarea} from "@/components/ui/textarea.tsx";
 import {Switch} from "@/components/ui/switch.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import type {Product} from "@/api/products";
 import {useEffect} from "react";
 import {toast} from "sonner";
 
-const Product = () => {
+type ProductModeProps = {
+  mode?: "edit" | "create";
+}
+
+
+const ProductEdit = ({mode}:ProductModeProps) => {
   const { productId } = useParams<{productId: string}>();
   const navigate = useNavigate();
+  const isEdit = mode === "edit" || (!productId && mode === "create");
 
   const {
     register,
@@ -22,8 +27,8 @@ const Product = () => {
     watch,
     formState: { errors, isSubmitting},
     reset,
-  } = useForm( {
-    resolver: zodResolver(ProductSchema),
+  } = useForm<Omit<ProductType, "id">>( {
+    resolver: zodResolver(productFormSchema),
     defaultValues: {
       name: "",
       slug: "",
@@ -35,20 +40,8 @@ const Product = () => {
       isFavorite: false,
       category_id: 1, // default to 1
 
-    }
+    },
   });
-
-  const onSubmit = (data: Omit<Product, "id">) => {
-    try {
-      if (productId) {
-        updateProduct(Number(productId), data);
-        toast.success("Product updated!");
-        navigate("/products");
-      }
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Something went wrong!");
-    }
-  }
 
   useEffect(() => {
     if (productId) {
@@ -72,10 +65,27 @@ const Product = () => {
     }
   }, [productId, reset]);
 
+  const onSubmit = async (data: Omit<ProductType, "id">) => {
+    try {
+      if (isEdit && productId) {
+        await updateProduct(Number(productId), data);
+        toast.success("Product updated!");
+        navigate("/products");
+      } else {
+        await createProduct(data);
+        toast.success("Product created!");
+      }
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Something went wrong!");
+    }
+  }
+
+
+
   return (
     <>
       <form className="max-w-xl mx-auto mt-12 p-8 border rounded-lg space-y-6" onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="text-xl font-bold">Edit product</h1>
+        <h1 className="text-xl font-bold">{isEdit ? "Edit Product" : "Create new Product"}</h1>
         <div>
           <Label htmlFor="name">
             Name
@@ -154,4 +164,4 @@ const Product = () => {
   )
 }
 
-export default Product;
+export default ProductEdit;

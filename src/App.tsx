@@ -22,6 +22,8 @@ import {BrowserRouter, Route, Routes} from "react-router";
 // import UserPage from "./pages/UserPage.tsx";
 import RouterLayout from "./components/RouterLayout.tsx";
 import ProductsList from "@/components/ProductsList.tsx";
+// import {ProductType} from "@/api/products";
+import Product from "@/pages/Product.tsx";
 // import ExamplesPage from "./pages/ExamplesPage.tsx";
 // import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
 // import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
@@ -103,8 +105,8 @@ function App() {
             {/*<Route path="*" element={<NotFoundPage />}></Route>*/}
             <Route path="products" element={<RouterLayout />} />
               <Route index element={<ProductsList/>} />
-              {/*<Route path="new" element={<Product />}>*/}
-              {/*<Route path=":productId" element={<Product />} />*/}
+              <Route path="new" element={<Product mode="create" />}/>
+              <Route path=":productId" element={<Product mode="edit"/>} />
 
           </Routes>
         {/*</Layout>*/}
