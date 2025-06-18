@@ -8,7 +8,7 @@ export const ProductSchema = z.object({
   name: z.string().min(1, "Required"),
   slug: z.string().min(1, "Required").regex(/^[a-zA-Z0-9]+$/, "Slug must use only latin letters"),
   description: z.string().optional(),
-  image: z.string().url("Must be a valid url").optional(),
+  image: z.string().url("Must be a valid url").optional().or(z.literal("")),
   price: z.coerce.number().nonnegative("Must be greater thar 0"),
   isActive: z.boolean(),
   isFavorite: z.boolean(),
@@ -16,7 +16,9 @@ export const ProductSchema = z.object({
   category_id: z.number().int().min(1, "Category is required"),
 })
 
-export type Product = z.infer<typeof ProductSchema>
+export const productFormSchema = ProductSchema.omit({id: true});
+
+export type ProductType = z.infer<typeof ProductSchema>
 
 
 // export type Product = {
@@ -32,7 +34,7 @@ export type Product = z.infer<typeof ProductSchema>
 //   category_id?: number,
 // }
 
-export async function getProducts(): Promise<Product[]> {
+export async function getProducts(): Promise<ProductType[]> {
   const res = await fetch(`${API_URL}tenants/${TENANT_ID}/products/`);
   if (!res.ok) throw new Error("Failed to get products");
   const data = await res.json();
@@ -40,7 +42,7 @@ export async function getProducts(): Promise<Product[]> {
   return data;
 }
 
-export async function getProduct(id: number): Promise<Product> {
+export async function getProduct(id: number): Promise<ProductType> {
   const res = await fetch(`${API_URL}tenants/${TENANT_ID}/products/${id}`);
   if (!res.ok) throw new Error("Failed to get product");
   return await res.json();
@@ -58,7 +60,7 @@ export async function updateProduct(
     isFavorite: boolean;
     sort: number;
 
-}): Promise<Product> {
+}): Promise<ProductType> {
   const res = await fetch(`${API_URL}tenants/${TENANT_ID}/products/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
